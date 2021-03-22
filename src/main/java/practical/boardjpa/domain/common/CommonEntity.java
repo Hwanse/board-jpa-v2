@@ -30,9 +30,4 @@ public class CommonEntity {
 
     private Boolean isUse;
 
-    @PrePersist
-    public void prePersist() {
-        isUse = true;
-    }
-
 }
