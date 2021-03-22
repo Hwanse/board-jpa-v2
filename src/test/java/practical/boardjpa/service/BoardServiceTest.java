@@ -3,6 +3,7 @@ package practical.boardjpa.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.EntityManager;
 import org.assertj.core.api.Assertions;
@@ -31,6 +32,7 @@ class BoardServiceTest {
     public void create_board() throws Exception {
         // given
         BoardDto boardDto = createBoardDto();
+        LocalDateTime now = LocalDateTime.now();
 
         // when
         Long boardId = boardService.createBoard(boardDto);
@@ -42,6 +44,12 @@ class BoardServiceTest {
         // then
         assertThat(findBoard).isNotNull();
         assertThat(findBoard.getId()).isEqualTo(boardId);
+        assertThat(findBoard.getIsUse()).isTrue();
+        assertThat(findBoard.getName()).isEqualTo(boardDto.getName());
+        assertThat(findBoard.getWriter()).isEqualTo(boardDto.getWriter());
+        assertThat(findBoard.getModifier()).isEqualTo(boardDto.getModifier());
+        assertThat(findBoard.getCreateDate()).isAfter(now);
+        assertThat(findBoard.getUpdateDate()).isAfter(now);
     }
 
 

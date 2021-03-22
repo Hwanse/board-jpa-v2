@@ -33,8 +33,8 @@ public class Post extends CommonEntity {
     @JoinColumn(name = "board_id")
     private Board board;
 
-    @Column(name = "post_name")
-    private String name;
+    @Column(name = "title")
+    private String title;
 
     private String contents;
 
@@ -51,9 +51,10 @@ public class Post extends CommonEntity {
     private List<Comment> comments = new ArrayList<>();
 
     public Post(Board board, PostDto postDto) {
+        super.setIsUse(postDto.getIsUse());
         super.setWriter(postDto.getWriter());
         super.setModifier(postDto.getModifier());
-        this.name = postDto.getName();
+        this.title = postDto.getTitle();
         this.contents = postDto.getContents();
         this.board = board;
         board.getPosts().add(this);
@@ -68,7 +69,7 @@ public class Post extends CommonEntity {
         super.setIsUse(postDto.getIsUse());
         super.setWriter(postDto.getWriter());
         super.setModifier(postDto.getModifier());
-        this.name = postDto.getName();
+        this.title = postDto.getTitle();
         this.contents = postDto.getContents();
     }
 

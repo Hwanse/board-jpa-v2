@@ -23,6 +23,7 @@ public class BoardService {
         return savedBoard.getId();
     }
 
+    @Transactional
     public void modifyBoard(BoardDto boardDto) {
         Board findBoard = boardRepository.findById(boardDto.getId())
                                          .orElseThrow(IllegalAccessError::new);

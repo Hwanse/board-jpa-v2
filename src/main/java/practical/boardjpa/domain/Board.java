@@ -34,9 +34,10 @@ public class Board extends CommonEntity {
     private List<Post> posts = new ArrayList<>();
 
     public Board(BoardDto boardDto) {
+        super.setIsUse(boardDto.getIsUse());
         super.setWriter(boardDto.getWriter());
         super.setModifier(boardDto.getModifier());
-        this.name = name;
+        this.name = boardDto.getName();
     }
 
     public void modifyBoard(BoardDto boardDto) {
