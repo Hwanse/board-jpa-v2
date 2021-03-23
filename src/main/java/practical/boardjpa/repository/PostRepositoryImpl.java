@@ -34,7 +34,8 @@ public class PostRepositoryImpl implements PostRepositoryQuery {
                 post.isUse,
                 post.writer,
                 post.modifier,
-                post.parent.id
+                post.parent.id,
+                post.board.id
             ))
             .from(post)
             .where(

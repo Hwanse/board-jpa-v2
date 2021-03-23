@@ -43,15 +43,22 @@ public class Comment extends CommonEntity {
         cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> replyComments = new ArrayList<>();
 
+    private int level;
+
     public Comment(Post post, CommentDto commentDto) {
-        this.contents = contents;
+        super.setIsUse(commentDto.getIsUse());
+        super.setWriter(commentDto.getWriter());
+        super.setModifier(commentDto.getModifier());
+        this.contents = commentDto.getContents();
         this.post = post;
+        this.level = 1;
         post.getComments().add(this);
     }
 
-    public void addReplyComment(Comment parent) {
+    public void setParentComment(Comment parent) {
         this.parent = parent;
         parent.getReplyComments().add(this);
+        this.level = parent.getLevel() + 1;
     }
 
     public void modifyComment(CommentDto commentDto) {

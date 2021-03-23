@@ -1,6 +1,5 @@
 package practical.boardjpa.service;
 
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -41,7 +40,7 @@ public class PostService {
                                     .orElseThrow(IllegalAccessError::new);
 
         Post post = new Post(findBoard, postDto);
-        post.addReplyPost(parent);
+        post.setParentPost(parent);
 
         postRepository.save(post);
         return post.getId();

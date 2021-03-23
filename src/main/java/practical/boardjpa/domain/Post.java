@@ -60,7 +60,7 @@ public class Post extends CommonEntity {
         board.getPosts().add(this);
     }
 
-    public void addReplyPost(Post parent) {
+    public void setParentPost(Post parent) {
         this.parent = parent;
         parent.getReplyPosts().add(this);
     }
